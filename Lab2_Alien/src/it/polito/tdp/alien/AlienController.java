@@ -47,36 +47,30 @@ public class AlienController {
     void doTranslate(ActionEvent event) {
       	
     	String [] nuovaParola= txtWord.getText().split(" ");
-		
-    	System.out.println(nuovaParola[0]);
-
-    	if(dizionario.cerca(nuovaParola[0])==false){
-    		
-    		if(nuovaParola.length==2){
+		    	
+    	if(nuovaParola.length==2){
     		
     		Word parola= new Word(nuovaParola[0],nuovaParola[1]);  	
-        
-    		System.out.println(parola);
     		
-        	dizionario.addWord(parola);
-        	
-        	}
-    		
-    		else 
-        		txtResult.appendText(dizionario.translateWord(nuovaParola[0]));
-        	
+	    	if(dizionario.cerca(parola)==false){
+	    		
+	    	//	System.out.println(parola);
+	    		
+	        	dizionario.addWord(nuovaParola[0],nuovaParola[1]);	
+	        }
+	    	
+	    	else{
+	    		
+	    		txtResult.clear();
+	    		txtResult.appendText(dizionario.translateWord(nuovaParola[0]));
+	    	}
     	}
     	
     	else{
-    		
-    		txtResult.clear();
-    		
-    		txtResult.appendText(dizionario.translateWord(nuovaParola[0]));
-    	
+    			txtResult.clear();
+        		txtResult.appendText(dizionario.translateWord(nuovaParola[0]));
     	}
-    	    	
     }
-    
     
     @FXML
     void doReset(ActionEvent event) {

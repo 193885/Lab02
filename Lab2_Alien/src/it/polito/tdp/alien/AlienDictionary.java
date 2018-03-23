@@ -12,10 +12,16 @@ public class AlienDictionary {
 		paroleAliene= new LinkedList<>();
 	}
 
-	public void addWord(Word parola){
+	public void addWord(String alienWorld, String translate){
+		
+		for(Word p : paroleAliene){
+		
+			if(p.getAlienWord().compareTo(alienWorld)==0){
 				
-		paroleAliene.add(parola);
-	
+				paroleAliene.remove(p);
+			}				
+		}
+		paroleAliene.add(new Word(alienWorld,translate));
 	}
 
 	@Override
@@ -23,15 +29,13 @@ public class AlienDictionary {
 		return "AlienDictionary [paroleAliene=" + paroleAliene + "]";
 	}
 
-	public boolean cerca(String parolaDaCercare) {
+	public boolean cerca(Word parolaDaCercare) {
 		
 		for(Word p : paroleAliene){
 		
-		if(p.getAlienWord().compareTo(parolaDaCercare)==0)
-			
-		//	paroleAliene.remove(p);
-				
-			return true;
+			if(p.equals(parolaDaCercare))
+									
+				return true;
 		}
 				
 			return false;
