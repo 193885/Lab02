@@ -37,7 +37,7 @@ public class AlienDictionary {
 			return false;
 	}
 
-	public String getTransaltion(String word) {
+	public String translateWord(String word) {
 		
 		for(Word p : paroleAliene){
 			
@@ -46,7 +46,7 @@ public class AlienDictionary {
 				return p.getTranslation();
 		}
 				
-		return "";
+		return "null";
 	}
 
 }

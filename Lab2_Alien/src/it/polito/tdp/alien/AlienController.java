@@ -47,8 +47,12 @@ public class AlienController {
     void doTranslate(ActionEvent event) {
       	
     	String [] nuovaParola= txtWord.getText().split(" ");
-    		    	
+		
+    	System.out.println(nuovaParola[0]);
+
     	if(dizionario.cerca(nuovaParola[0])==false){
+    		
+    		if(nuovaParola.length==2){
     		
     		Word parola= new Word(nuovaParola[0],nuovaParola[1]);  	
         
@@ -56,13 +60,18 @@ public class AlienController {
     		
         	dizionario.addWord(parola);
         	
+        	}
+    		
+    		else 
+        		txtResult.appendText(dizionario.translateWord(nuovaParola[0]));
+        	
     	}
     	
     	else{
     		
     		txtResult.clear();
     		
-    		txtResult.appendText(dizionario.getTransaltion(nuovaParola[0]));
+    		txtResult.appendText(dizionario.translateWord(nuovaParola[0]));
     	
     	}
     	    	
