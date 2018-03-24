@@ -1,56 +1,74 @@
 package it.polito.tdp.alien;
 
-import java.util.List;
-import java.util.LinkedList;
+import java.util.TreeMap;
+import java.util.Iterator;
 
 public class AlienDictionary {
 	
-	private List <Word> paroleAliene;
+	private TreeMap <String,Wordhenanced> paroleAliene;
 	
 	public AlienDictionary() {
 		
-		paroleAliene= new LinkedList<>();
+		paroleAliene= new TreeMap <>();
 	}
 
-	public void addWord(String alienWorld, String translate){
+	public void addWord(String alienWord, String translate){
+	
+		if(paroleAliene.isEmpty()==true){  //prima parola inserita
+			
+			paroleAliene.put(alienWord,new Wordhenanced(alienWord, translate));					
 		
-		for(Word p : paroleAliene){
-		
-			if(p.getAlienWord().compareTo(alienWorld)==0){
-				
-				paroleAliene.remove(p);
-			}				
 		}
-		paroleAliene.add(new Word(alienWorld,translate));
+		
+		else{
+						//parola nuova
+			if(!paroleAliene.containsKey(alienWord)){
+				
+				paroleAliene.put(alienWord,new Wordhenanced(alienWord, translate));
+			}
+			
+			else{	//parola presente con traduzione diversa
+				
+				Wordhenanced temp = paroleAliene.get(alienWord);
+				
+				Iterator <Wordhenanced> iter = paroleAliene.values().iterator();
+				
+				while (iter.hasNext()) {
+					Wordhenanced str = iter.next();
+
+				    if(str.getAlienWord().compareTo(alienWord)==0 && str.contieneTrad(translate)==false)
+				        iter.remove();
+				    else
+				    	return;
+				}			
+						temp.addTranslate(translate);
+						paroleAliene.put(alienWord,temp);			
+			}
+		}	
 	}
 
-	@Override
-	public String toString() {
-		return "AlienDictionary [paroleAliene=" + paroleAliene + "]";
-	}
-
-	public boolean cerca(Word parolaDaCercare) {
+/*	public boolean cerca(String parolaDaCercare) {
 		
-		for(Word p : paroleAliene){
+		for(Wordhenanced p : paroleAliene){
 		
-			if(p.equals(parolaDaCercare))
-									
+		//	if(p.equals(parolaDaCercare))
+			
+			if(p.getAlienWord().compareTo(parolaDaCercare)==0)
+						
 				return true;
 		}
 				
 			return false;
 	}
-
+*/
 	public String translateWord(String word) {
 		
-		for(Word p : paroleAliene){
-			
-			if(p.getAlienWord().compareTo(word)==0)
+		if(paroleAliene.containsKey(word))
 				
-				return p.getTranslation();
-		}
-				
-		return "null";
+			return paroleAliene.get(word).getTranslations();
+	
+		else				
+		
+			return "null";
 	}
-
 }

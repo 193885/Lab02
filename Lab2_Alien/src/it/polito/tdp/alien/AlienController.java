@@ -52,24 +52,17 @@ public class AlienController {
 	    		 return;   //per imperdire al programma di funzionare lo stesso anche se regex fallita
 	    	}
 	    	
-	    	if(nuovaParola.length==2){
-	    		
-	    		Word parola= new Word(nuovaParola[0].toLowerCase(),nuovaParola[1].toLowerCase());  	
-	    		
-		    	if(dizionario.cerca(parola)==false)
-		    			    		
-		        	dizionario.addWord(nuovaParola[0].toLowerCase(),nuovaParola[1].toLowerCase());	
-		        
-		    	else{
-		    		txtResult.clear();
-		    		txtResult.appendText(dizionario.translateWord(nuovaParola[0].toLowerCase()));
+		    	if(nuovaParola.length==2){ // per inserire parola
+		    			    			    		
+			    		//se non c'è la parola in dizionario  l'aggiungo 
+			    		
+			        	dizionario.addWord(nuovaParola[0].toLowerCase(),nuovaParola[1].toLowerCase());	
 		    	}
-	    	}
-	    	
-	    	else{
-	    			txtResult.clear();
-	        		txtResult.appendText(dizionario.translateWord(nuovaParola[0].toLowerCase()));
-	    	}
+		    	
+		    	else{ //per ottenere la traduzione della parola 
+		    			txtResult.clear();
+		        		txtResult.appendText(dizionario.translateWord(nuovaParola[0].toLowerCase()));
+		    	}
     }
     
     @FXML
