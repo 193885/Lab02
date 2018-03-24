@@ -36,10 +36,10 @@ public class AlienDictionary {
 				while (iter.hasNext()) {
 					Wordhenanced str = iter.next();
 
-				    if(str.getAlienWord().compareTo(alienWord)==0 && str.contieneTrad(translate)==false)
+				    if(str.getAlienWord().compareTo(alienWord)==0 && str.contiene(translate)==false)
 				        iter.remove();
-				    else
-				    	return;
+				    else if(str.getAlienWord().compareTo(alienWord)==0 && str.contiene(translate)==true)
+				    	return ;
 				}			
 						temp.addTranslate(translate);
 						paroleAliene.put(alienWord,temp);			
@@ -70,5 +70,12 @@ public class AlienDictionary {
 		else				
 		
 			return "null";
+	}
+
+	public void destroy() {
+		
+		paroleAliene.keySet().clear();
+		paroleAliene.values().clear();
+		
 	}
 }

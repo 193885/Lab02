@@ -18,34 +18,29 @@ public class Wordhenanced {
 		return alienWord;
 	}
 	
-	public boolean contieneTrad(String translation){
-		
-		if(translations.contains(translation))
-		
-		return true;
-		
-		else 
-			
-			return false;	
-	}
-	
 	public String getTranslations() {
 		
 		String result="";
 		
 		for(String s :translations)
-			
+				
 			result+=" "+s;
 		
 		return result;
 	}
 
-	@Override
-	public String toString() {
-		return "Wordhenanced [alienWord=" + alienWord + ", translations=" + translations + "]";
-	}
-
 	public void addTranslate(String translate) {
 		translations.add(translate);	
+	}
+
+	public boolean contiene(String translate) {
+
+		if(translations.contains(translate))
+			
+			return true;
+		
+		else
+
+			return false;
 	}
 }
