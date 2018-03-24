@@ -4,8 +4,6 @@ package it.polito.tdp.alien;
  * Sample Skeleton for 'Alien.fxml' Controller Class
  */
 
-
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,7 +30,6 @@ public class AlienController {
     @FXML
     private Button btnReset;
         
-    
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
     	assert txtWord != null : "fx:id=\"txtWord\" was not injected: check your FXML file 'Alien.fxml'.";
@@ -41,35 +38,38 @@ public class AlienController {
     	assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Alien.fxml'.";
     	
     }
-  
     
     @FXML
     void doTranslate(ActionEvent event) {
-      	
-    	String [] nuovaParola= txtWord.getText().split(" ");
-		    	
-    	if(nuovaParola.length==2){
-    		
-    		Word parola= new Word(nuovaParola[0],nuovaParola[1]);  	
-    		
-	    	if(dizionario.cerca(parola)==false){
+    	
+	    	String [] nuovaParola= txtWord.getText().split(" ");
+	    	txtWord.clear();  //per pulire il campo d'inserimento
+	    	txtResult.clear();
+	    	
+	    	if(nuovaParola[0].matches("[a-zA-Z]+")==false){
+	    		 txtResult.clear();
+	    		 txtResult.appendText("parola errata!");
+	    		 return;   //per imperdire al programma di funzionare lo stesso anche se regex fallita
+	    	}
+	    	
+	    	if(nuovaParola.length==2){
 	    		
-	    	//	System.out.println(parola);
+	    		Word parola= new Word(nuovaParola[0].toLowerCase(),nuovaParola[1].toLowerCase());  	
 	    		
-	        	dizionario.addWord(nuovaParola[0],nuovaParola[1]);	
-	        }
+		    	if(dizionario.cerca(parola)==false)
+		    			    		
+		        	dizionario.addWord(nuovaParola[0].toLowerCase(),nuovaParola[1].toLowerCase());	
+		        
+		    	else{
+		    		txtResult.clear();
+		    		txtResult.appendText(dizionario.translateWord(nuovaParola[0].toLowerCase()));
+		    	}
+	    	}
 	    	
 	    	else{
-	    		
-	    		txtResult.clear();
-	    		txtResult.appendText(dizionario.translateWord(nuovaParola[0]));
+	    			txtResult.clear();
+	        		txtResult.appendText(dizionario.translateWord(nuovaParola[0].toLowerCase()));
 	    	}
-    	}
-    	
-    	else{
-    			txtResult.clear();
-        		txtResult.appendText(dizionario.translateWord(nuovaParola[0]));
-    	}
     }
     
     @FXML
