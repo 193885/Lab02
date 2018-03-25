@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class AlienDictionary {
 	
-	private TreeMap <String,Wordhenanced> paroleAliene;
+	private TreeMap <String,WordEnhanced> paroleAliene;
 	
 	public AlienDictionary() {
 		
@@ -16,7 +16,7 @@ public class AlienDictionary {
 	
 		if(paroleAliene.isEmpty()==true){  //prima parola inserita
 			
-			paroleAliene.put(alienWord,new Wordhenanced(alienWord, translate));					
+			paroleAliene.put(alienWord,new WordEnhanced(alienWord, translate));					
 		
 		}
 		
@@ -24,17 +24,17 @@ public class AlienDictionary {
 						//parola nuova
 			if(!paroleAliene.containsKey(alienWord)){
 				
-				paroleAliene.put(alienWord,new Wordhenanced(alienWord, translate));
+				paroleAliene.put(alienWord,new WordEnhanced(alienWord, translate));
 			}
 			
 			else{	//parola presente con traduzione diversa
 				
-				Wordhenanced temp = paroleAliene.get(alienWord);
+				WordEnhanced temp = paroleAliene.get(alienWord);
 				
-				Iterator <Wordhenanced> iter = paroleAliene.values().iterator();
+				Iterator <WordEnhanced> iter = paroleAliene.values().iterator();
 				
 				while (iter.hasNext()) {
-					Wordhenanced str = iter.next();
+					WordEnhanced str = iter.next();
 
 				    if(str.getAlienWord().compareTo(alienWord)==0 && str.contiene(translate)==false)
 				        iter.remove();

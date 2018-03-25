@@ -3,12 +3,12 @@ package it.polito.tdp.alien;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Wordhenanced {
+public class WordEnhanced {
 	
 	private String alienWord;
 	private List<String> translations=new LinkedList<>();
 	
-	public Wordhenanced(String alienWord,String traduzione) {
+	public WordEnhanced(String alienWord,String traduzione) {
 	
 		this.alienWord=alienWord;
 		this.translations.add(traduzione);	
